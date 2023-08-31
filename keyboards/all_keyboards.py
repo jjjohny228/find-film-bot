@@ -29,7 +29,8 @@ def get_admin_keyboard():
     btn3 = KeyboardButton("Номер фильма🔎")
     btn4 = KeyboardButton("Посещаемость👶")
     btn5 = KeyboardButton("Список всех фильмов🍿")
-    keyboard.add(btn1, btn2).add(btn3, btn4).add(btn5)
+    btn6 = KeyboardButton("Скачать бд🗂️")
+    keyboard.add(btn1, btn2).add(btn3, btn4).add(btn5, btn6)
     return keyboard
 
 

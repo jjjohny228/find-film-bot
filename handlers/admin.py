@@ -9,6 +9,7 @@ import datetime
 from statistics import get_today_statistics, get_month_statistics, get_all_time_statistics
 from keyboards.all_keyboards import *
 from data_base import data_functions
+from aiogram.types import InputFile
 
 
 class FilmsStateGroup(StatesGroup):
@@ -165,6 +166,10 @@ async def load_url(message: types.Message, state: FSMContext):
                            reply_markup=get_admin_keyboard())
 
 
+async def download_data_base_command(message: types.Message):
+    await bot.send_document(message.from_user.id, InputFile('main_data_base.db'))
+
+
 def register_admin_handlers(disp: Dispatcher):
     disp.register_message_handler(delete_film_instruction, Text("Удалить фильм🗑"))
     disp.register_message_handler(back_main_menu, Text("Главное меню"), state='*')
@@ -186,3 +191,4 @@ def register_admin_handlers(disp: Dispatcher):
     disp.register_message_handler(load_photo, state=FilmsStateGroup.photo)
     # disp.register_message_handler(invalid_photo, lambda message: not message.photo, state=FilmsStateGroup.photo)
     disp.register_message_handler(load_url, state=FilmsStateGroup.url)
+    disp.register_message_handler(download_data_base_command, Text("Скачать бд🗂️"))
